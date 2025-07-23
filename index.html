@@ -2,23 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy 15th Birthday Isaac!</title>
+  <title>Isaac's Birthday Cake Builder</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #fef0e6;
+      background: #fff0e1;
+      font-family: 'Comic Sans MS', cursive;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      user-select: none;
+      cursor: pointer;
     }
 
     h1 {
-      font-size: 2.5em;
-      color: #e63946;
+      color: #d62828;
+      margin-bottom: 20px;
       animation: bounce 2s infinite;
     }
 
@@ -30,47 +32,63 @@
     .cake {
       position: relative;
       width: 200px;
-      height: 150px;
-      background: #ffb347;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      height: 180px;
     }
 
-    .cake::before {
-      content: '';
+    .layer {
       position: absolute;
-      top: -30px;
-      left: 0;
-      width: 100%;
+      width: 200px;
+      height: 60px;
+      background-color: #f77f00;
+      border-radius: 0 0 20px 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: translateY(20px);
+    }
+
+    .layer1 {
+      bottom: 0;
+    }
+
+    .layer2 {
+      bottom: 60px;
+      background-color: #fcbf49;
+    }
+
+    .top {
+      bottom: 120px;
       height: 30px;
-      background: #ff6961;
+      background-color: #e63946;
       border-radius: 20px 20px 0 0;
     }
 
     .candle {
       position: absolute;
-      top: -50px;
       width: 10px;
       height: 30px;
-      background: #ffffff;
+      background: #fff;
       border-radius: 5px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .candle:nth-child(1) { left: 50px; }
-    .candle:nth-child(2) { left: 95px; }
-    .candle:nth-child(3) { left: 140px; }
+    .candle:nth-child(1) { left: 50px; top: -30px; }
+    .candle:nth-child(2) { left: 95px; top: -30px; }
+    .candle:nth-child(3) { left: 140px; top: -30px; }
 
     .flame {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
       width: 10px;
       height: 15px;
       background: orange;
       border-radius: 50%;
-      animation: flicker 0.2s infinite;
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
       box-shadow: 0 0 15px orange;
+      animation: flicker 0.2s infinite;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
     @keyframes flicker {
@@ -80,19 +98,75 @@
     }
 
     .message {
-      margin-top: 20px;
       font-size: 1.5em;
+      margin-top: 20px;
       color: #333;
+      text-align: center;
     }
   </style>
 </head>
-<body>
-  <h1>🎉 Happy 15th Birthday Isaac Choi! 🎉</h1>
-  <div class="cake">
-    <div class="candle"><div class="flame"></div></div>
-    <div class="candle"><div class="flame"></div></div>
-    <div class="candle"><div class="flame"></div></div>
+<body onclick="buildCake()">
+  <h1>🎂 Tap to Build Isaac's Cake! 🎉</h1>
+  <div class="cake" id="cake">
+    <div class="layer layer1" id="layer1"></div>
+    <div class="layer layer2" id="layer2"></div>
+    <div class="layer top" id="topLayer"></div>
+
+    <div class="candle" id="candle1">
+      <div class="flame" id="flame1"></div>
+    </div>
+    <div class="candle" id="candle2">
+      <div class="flame" id="flame2"></div>
+    </div>
+    <div class="candle" id="candle3">
+      <div class="flame" id="flame3"></div>
+    </div>
   </div>
-  <div class="message">Make a wish! 🎂</div>
+  <div class="message" id="message">Step 1: Tap to start baking!</div>
+
+  <script>
+    let step = 0;
+
+    const steps = [
+      () => {
+        document.getElementById('layer1').style.opacity = 1;
+        document.getElementById('layer1').style.transform = 'translateY(0)';
+        updateMessage("Step 2: Add the next layer!");
+      },
+      () => {
+        document.getElementById('layer2').style.opacity = 1;
+        document.getElementById('layer2').style.transform = 'translateY(0)';
+        updateMessage("Step 3: Add the frosting top!");
+      },
+      () => {
+        document.getElementById('topLayer').style.opacity = 1;
+        document.getElementById('topLayer').style.transform = 'translateY(0)';
+        updateMessage("Step 4: Add the candles!");
+      },
+      () => {
+        ['candle1', 'candle2', 'candle3'].forEach(id => {
+          document.getElementById(id).style.opacity = 1;
+        });
+        updateMessage("Final Step: Light the candles!");
+      },
+      () => {
+        ['flame1', 'flame2', 'flame3'].forEach(id => {
+          document.getElementById(id).style.opacity = 1;
+        });
+        updateMessage("🎉 Happy 15th Birthday Isaac Choi! 🎉");
+      }
+    ];
+
+    function buildCake() {
+      if (step < steps.length) {
+        steps[step]();
+        step++;
+      }
+    }
+
+    function updateMessage(text) {
+      document.getElementById("message").textContent = text;
+    }
+  </script>
 </body>
-  </html>
+</html>
