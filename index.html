@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Isaac Choi's 15th Birthday Cake</title>
@@ -17,156 +16,145 @@
       user-select: none;
       cursor: pointer;
       overflow: hidden;
-    }
+    }h1 {
+  color: #e63946;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+}
 
-    h1 {
-      color: #e63946;
-      margin-bottom: 20px;
-      animation: bounce 2s infinite;
-    }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+.cake {
+  position: relative;
+  width: 300px;
+  height: 280px;
+}
 
-    .cake {
-      position: relative;
-      width: 300px;
-      height: 280px;
-    }
+.layer {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  background-color: #f77f00;
+  border-radius: 0 0 30px 30px;
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
-    .layer {
-      position: absolute;
-      width: 100%;
-      height: 80px;
-      background-color: #f77f00;
-      border-radius: 0 0 30px 30px;
-      opacity: 0;
-      transform: translateY(50px) scale(0.8);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
 
-    .layer1 { bottom: 0; }
-    .layer2 { bottom: 80px; background-color: #fcbf49; }
+.layer1 { bottom: 0; }
+.layer2 { bottom: 80px; background-color: #fcbf49; }
 
-    .top {
-      position: absolute;
-      bottom: 160px;
-      height: 50px;
-      width: 100%;
-      background-color: #e63946;
-      border-radius: 30px 30px 0 0;
-      overflow: visible;
-      opacity: 0;
-      transform: translateY(50px) scale(0.8);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+.top {
+  position: absolute;
+  bottom: 160px;
+  height: 50px;
+  width: 100%;
+  background-color: #e63946;
+  border-radius: 30px 30px 0 0;
+  overflow: visible;
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
 
-    .top.visible {
-      opacity: 1 !important;
-      transform: translateY(0) scale(1) !important;
-      animation: pop 0.4s ease;
-    }
+.top.visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  animation: pop 0.4s ease;
+}
 
-    .top::after {
-      content: '';
-      position: absolute;
-      top: 50px;
-      left: 0;
-      width: 100%;
-      height: 20px;
-      background: #e63946;
-      border-radius: 0 0 20px 20px;
-      clip-path: polygon(
-        0% 0%, 5% 20%, 10% 0%, 15% 25%, 20% 0%,
-        25% 15%, 30% 0%, 35% 30%, 40% 5%, 45% 0%,
-        50% 20%, 55% 0%, 60% 25%, 65% 0%, 70% 30%,
-        75% 5%, 80% 0%, 85% 20%, 90% 0%, 95% 25%, 100% 0%
-      );
-      animation: drip 0.6s ease forwards;
-      opacity: 0;
-    }
+.top::after {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #e63946;
+  border-radius: 0 0 20px 20px;
+  clip-path: polygon(
+    0% 0%, 5% 20%, 10% 0%, 15% 25%, 20% 0%,
+    25% 15%, 30% 0%, 35% 30%, 40% 5%, 45% 0%,
+    50% 20%, 55% 0%, 60% 25%, 65% 0%, 70% 30%,
+    75% 5%, 80% 0%, 85% 20%, 90% 0%, 95% 25%, 100% 0%
+  );
+  animation: drip 0.6s ease forwards;
+  opacity: 0;
+}
 
-    .top.visible::after { opacity: 1; }
+.top.visible::after { opacity: 1; }
 
-    @keyframes drip {
-      0% { transform: translateY(-30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
+@keyframes drip {
+  0% { transform: translateY(-30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
 
-    @keyframes pop {
-      0% { transform: scale(0.95); }
-      50% { transform: scale(1.03); }
-      100% { transform: scale(1); }
-    }
+@keyframes pop {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
 
-    .candles {
-      position: absolute;
-      bottom: 230px; /* Align on top of frosting drip */
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-evenly;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
-    }
+.candles {
+  position: absolute;
+  bottom: 210px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
 
-    .candle {
-      position: relative;
-      width: 8px;
-      background: repeating-linear-gradient(
-        45deg,
-        #fff,
-        #fff 3px,
-        #ccc 3px,
-        #ccc 6px
-      );
-      border-radius: 4px;
-      animation: pop 0.4s ease;
-    }
+.candle {
+  position: relative;
+  width: 8px;
+  background: repeating-linear-gradient(
+    45deg,
+    #fff,
+    #fff 3px,
+    #ccc 3px,
+    #ccc 6px
+  );
+  border-radius: 4px;
+  animation: pop 0.4s ease;
+}
 
-    .flame {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      width: 12px;
-      height: 18px;
-      background: orange;
-      border-radius: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 0 15px orange;
-      animation: flicker 0.15s infinite alternate;
-      opacity: 0;
-    }
+.flame {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 12px;
+  height: 18px;
+  background: orange;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px orange;
+  animation: flicker 0.15s infinite alternate;
+  opacity: 0;
+}
 
-    @keyframes flicker {
-      0% { transform: translateX(-50%) scale(1); opacity: 1; }
-      100% { transform: translateX(-50%) scale(1.1); opacity: 0.7; }
-    }
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1); opacity: 1; }
+  100% { transform: translateX(-50%) scale(1.1); opacity: 0.7; }
+}
 
-    .message {
-      margin-top: 20px;
-      font-size: 1.3em;
-      color: #444;
-      text-align: center;
-    }
+.message {
+  margin-top: 20px;
+  font-size: 1.3em;
+  color: #444;
+  text-align: center;
+}
 
-    .confetti {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      animation: fall 2s ease-out forwards;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
-      }
-    }
   </style>
 </head>
 <body onclick="buildCake()">
@@ -177,25 +165,24 @@
     <div class="top" id="topLayer"></div>
     <div class="candles" id="candles"></div>
   </div>
-  <div class="message" id="message">Step 1: Tap to start baking!</div>
-
-  <script>
+  <div class="message" id="message">Step 1: Tap to start baking!</div>  <script>
     let step = 0;
-
     const steps = [
-      () => { showLayer('layer1'); updateMessage('Step 2: Add the second layer!'); },
-      () => { showLayer('layer2'); updateMessage('Step 3: Add the frosting top!'); },
-      () => { showTop(); updateMessage('Step 4: Add all 15 candles!'); },
+      () => { document.getElementById('layer1').classList.add('visible'); updateMessage('Step 2: Add the second layer!'); },
+      () => { document.getElementById('layer2').classList.add('visible'); updateMessage('Step 3: Add the frosting top!'); },
+      () => { document.getElementById('topLayer').classList.add('visible'); updateMessage('Step 4: Add candles!'); },
       () => { addCandles(); updateMessage('Final Step: Light the candles!'); },
-      () => { lightCandles(); updateMessage("🎉 Happy 15th Birthday Isaac Choi! 🎉"); dropConfetti(); }
+      () => { lightCandles(); updateMessage("🎉 Happy 15th Birthday Isaac Choi! 🎉"); }
     ];
 
-    function showLayer(id) {
-      document.getElementById(id).classList.add('visible');
+    function updateMessage(text) {
+      document.getElementById('message').textContent = text;
     }
 
-    function showTop() {
-      document.getElementById('topLayer').classList.add('visible');
+    function buildCake() {
+      if (step < steps.length) {
+        steps[step++]();
+      }
     }
 
     function addCandles() {
@@ -203,41 +190,20 @@
       for (let i = 0; i < 15; i++) {
         const candle = document.createElement('div');
         candle.className = 'candle';
-        candle.style.height = `${25 + Math.random() * 15}px`;
         const flame = document.createElement('div');
-        flame.className = 'flame'; flame.id = `flame${i}`;
+        flame.className = 'flame';
+        flame.id = `flame${i}`;
         candle.appendChild(flame);
         candles.appendChild(candle);
       }
-      document.getElementById('candles').style.opacity = 1;
+      candles.style.opacity = 1;
     }
 
     function lightCandles() {
-      for (let i = 0; i < 15; i++) document.getElementById(`flame${i}`).style.opacity = 1;
-    }
-
-    function dropConfetti() {
-      for (let i = 0; i < 100; i++) {
-        const confetti = document.createElement('div');
-        confetti.className = 'confetti';
-        confetti.style.left = `${Math.random() * 100}%`;
-        confetti.style.top = `${Math.random() * -100}px`;
-        confetti.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
-        confetti.style.animationDelay = `${Math.random()}s`;
-        confetti.style.width = `${4 + Math.random() * 4}px`;
-        confetti.style.height = confetti.style.width;
-        document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 3000);
+      for (let i = 0; i < 15; i++) {
+        const flame = document.getElementById(`flame${i}`);
+        if (flame) flame.style.opacity = 1;
       }
     }
-
-    function updateMessage(text) {
-      document.getElementById('message').textContent = text;
-    }
-
-    function buildCake() {
-      if (step < steps.length) steps[step++]();
-    }
-  </script>
-</body>
+  </script></body>
 </html>
